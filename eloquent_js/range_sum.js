@@ -33,9 +33,9 @@ function range(start, stop, inc){
 
 function sum(array){
   var result = 0;
-  for(var i = 0; i < array.length; i++){
-    result += array[i];
-  }
+  array.forEach(function(num) {
+    result += num;
+  });
   return result;
 }
 /*-----test-----*/
