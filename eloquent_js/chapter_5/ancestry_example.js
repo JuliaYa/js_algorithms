@@ -38,3 +38,37 @@ ancestry.forEach(function(person){
 var average_age = average(mothers_ages);
 
 console.log(average_age);
+
+
+/*----average age by centuries----*/
+/*Подсчитайте средний возраст людей для каждого из столетий.
+ Назначаем столетию людей, беря их год смерти, деля его на 100 и округляя: 
+ Math.ceil(person.died / 100) 
+ 
+// → 16: 43.5
+//   17: 51.2
+ */
+/*В качестве призовой игры напишите функцию groupBy, абстрагирующую операцию
+ группировки. Она должна принимать массив и функцию, которая вычисляет группу
+ для элементов массива, и возвращать объект, который сопоставляет названия
+ групп массивам членов этих групп.*/
+
+ var centuries = {};
+
+ ancestry.forEach(function(person){
+   var century = Math.ceil(person.died / 100);
+   var age = person.died - person.born;
+   if(century in centuries){
+     centuries[century].push(age);
+   }else{
+     centuries[century] = [age];
+   }
+ });
+
+ console.log(centuries);
+
+ for(century in centuries){
+   var av_age = average(centuries[century]);
+   av_age = Math.round(av_age * 10) / 10;
+   console.log(`${century}: ${av_age}`);
+ }
