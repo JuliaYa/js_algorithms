@@ -3,25 +3,30 @@
 
   function some(array, func){
     var answer = false;
-    array.forEach(function(elem){
-      if(func(elem)){
+    for(var i = 0; i < array.length; i++){
+      if(func(array[i])){
         answer = true;
+        break;
       }
-    });
+    }
     return answer;
   }
   
   function every(array, func){
     var answer = true;
-    array.forEach(function(elem){
-      if(!func(elem)){
+    for(var i = 0; i < array.length; i++){
+      if(!func(array[i])){
         answer = false;
+        break; 
       }
-    });
+    };
     return answer;
   }
   
+/*------test------*/
+
   console.log(some([NaN, 3, 4], isNaN));
+  console.log(some([2, 3, 4], isNaN));
   
   console.log(every([NaN, NaN, 4], isNaN));
   console.log(every([NaN, NaN, NaN], isNaN));
